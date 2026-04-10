@@ -1,7 +1,7 @@
 ---
 title: "Lab 2 - Data wrangling"
-author: "John Q. Student"
-date: "June 24, 1497"
+author: "Shiam Purohit"
+date: "March 1, 2026"
 format: 
   html: default # for speed
   pdf: default # for final output
@@ -22,30 +22,194 @@ library(tidyverse)
 ## Part 1
 
 ### Question 1
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  count(state) %>%
+  arrange(desc(n))
+```
+
 
 
 \newpage
 
 ### Question 2
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  count(county) %>%
+  filter(n == 5)
+```
+
 
 \newpage
 
 ### Question 3
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(popdensity > 25000) %>%
+  select(county, state, popdensity, poptotal, area) %>%
+  arrange(desc(popdensity))
+```
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(popdensity == max(popdensity)) %>%
+  select(county, state, popdensity, poptotal, area) %>%
+  arrange(desc(popdensity))
+```
+
+\newpage
+
+### Question 4
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  summarize(
+    typical_density = median(popdensity),
+    q1 = quantile(popdensity, 0.25),
+    q3 = quantile(popdensity, 0.75)
+  )
+```
+
+
 \newpage
 
 ### Question 5
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  mutate(metro = if_else(inmetro == 1, "Yes", "No")) %>%
+  count(state, metro) %>%
+  group_by(state) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
+```
 
 \newpage
 
 ### Question 6
 
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(percbelowpoverty > 45, percollege < 10) %>%
+  select(county, state, percbelowpoverty, percollege)
+```
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(percbelowpoverty > 45, percollege < 10) %>%
+  select(county, state, percbelowpoverty, percollege)
+```
+
+(c)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(
+    (percbelowpoverty > 45 & percollege < 10) |
+    (percollege >= 40 & percbelowpoverty <= 20)
+  ) %>%
+  select(county, state, percbelowpoverty, percollege)
+```
+
+(d)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  mutate(
+    potential_outlier = if_else(
+      (percbelowpoverty > 45 & percollege < 10) |
+        (percollege >= 40 & percbelowpoverty <= 20),
+      "Yes",
+      "No"
+    )
+  ) %>%
+  select(county, state, percbelowpoverty, percollege, potential_outlier) %>%
+  arrange(potential_outlier)
+```
+
+(e)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  mutate(
+    potential_outlier = if_else(
+      (percbelowpoverty > 45 & percollege < 10) |
+        (percollege >= 40 & percbelowpoverty <= 20),
+      "Yes",
+      "No"
+    )
+  ) %>%
+  ggplot(aes(x = percollege, y = percbelowpoverty, color = potential_outlier)) +
+  geom_point() +
+  labs(
+    title = "Percentage with a college degree versus poverty rate",
+    subtitle = "Potential outliers in the Midwest",
+    x = "% college educated",
+    y = "% below poverty",
+    color = "Potential outlier"
+  )
+```
+
+
+
+
 \newpage
 
 ### Question 7
 
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+state_population <- midwest %>%
+  group_by(state) %>%
+  summarize(total_population = sum(poptotal)) %>%
+  arrange(desc(total_population))
+
+state_population
+```
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+state_population %>%
+  mutate(prop_population = total_population / sum(total_population)) %>%
+  arrange(desc(prop_population))
+```
+
+
 \newpage
 
 ### Question 8
+
+(a)
+
+```{r}
+# Done with the assistance of ChatGPT
+state_poverty <- midwest %>%
+  group_by(state) %>%
+  summarize(mean_percbelowpoverty = mean(percbelowpoverty))
+
+state_poverty
+```
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+state_poverty %>%
+  arrange(mean_percbelowpoverty)
+```
+
+
 
 \newpage
 
