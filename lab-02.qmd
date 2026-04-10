@@ -218,3 +218,67 @@ state_poverty %>%
 
 ### Question 9
 
+```{r}
+# Done with the assistance of ChatGPT
+df <- tibble(
+  var_1 = c(10, 20, 30, 40, 50),
+  var_2 = c("Pizza", "Burger", "Pizza", "Pizza", "Burger"),
+  var_3 = c("Apple", "Apple", "Pear", "Pear", "Banana")
+)
+
+df
+```
+
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  arrange(var_2)
+```
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2)
+```
+
+(c)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2) |>
+  summarize(mean_var_1 = mean(var_1))
+```
+
+(d)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  summarize(mean_var_1 = mean(var_1))
+```
+
+(e)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  summarize(mean_var_1 = mean(var_1), .groups = "drop")
+```
+
+(f)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  summarize(mean_var_1 = mean(var_1), .groups = "drop")
+```
+
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  mutate(mean_var_1 = mean(var_1))
+```
+
