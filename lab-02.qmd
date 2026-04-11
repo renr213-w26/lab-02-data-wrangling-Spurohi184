@@ -1,7 +1,7 @@
 ---
 title: "Lab 2 - Data wrangling"
-author: "John Q. Student"
-date: "June 24, 1497"
+author: "Shiam Purohit"
+date: "March 1, 2026"
 format: 
   html: default # for speed
   pdf: default # for final output
@@ -22,30 +22,203 @@ library(tidyverse)
 ## Part 1
 
 ### Question 1
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  count(state) %>%
+  arrange(desc(n))
+```
+Here,the number of counties in each state the dataset has were counted and the results are sorted from highest to lowest. Illinois has the most counties 102 and Wisconsin has the least with 72.
 
 
 \newpage
 
 ### Question 2
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  count(county) %>%
+  filter(n == 5)
+```
+For question 2, How frequently each county name appears was counted and they were filtered for names that showed up in all 5 states. The names are Crawford, Jackson, and Monroe and every county appeared 5 times.
 
 \newpage
 
 ### Question 3
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(popdensity > 25000) %>%
+  select(county, state, popdensity, poptotal, area) %>%
+  arrange(desc(popdensity))
+```
+A)	For question 3 part a, The data for counties with population density above 25,000 was filtered. Then I selected the required columns to sort them from highest to lowest density to get the most densely populated counties in the dataset.
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(popdensity == max(popdensity)) %>%
+  select(county, state, popdensity, poptotal, area) %>%
+  arrange(desc(popdensity))
+```
+B)	For part b, The maximum population density was used to identify the single county with the highest value. Cook County in Illinois has the highest population density. 
+
+
+\newpage
+
+### Question 4
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  summarize(
+    typical_density = median(popdensity),
+    q1 = quantile(popdensity, 0.25),
+    q3 = quantile(popdensity, 0.75)
+  )
+```
+For question 4, As the distribution is extremely right-skewed, Medians and quartiles were used instead of Mean and Standard deviation. A normal county has a population density of 1156 and the middle 50% of the counties fall between 622 and 2330.
+
 \newpage
 
 ### Question 5
-
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  mutate(metro = if_else(inmetro == 1, "Yes", "No")) %>%
+  count(state, metro) %>%
+  group_by(state) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
+```
+For question 5, A new “metro” variable was created to calculate the proportion of metro and non-metro counties in every state. The highest proportion of metro cities in Ohio and Illinois and Wisconsin has the lowest.
 \newpage
 
 ### Question 6
+
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(percbelowpoverty > 45, percollege < 10) %>%
+  select(county, state, percbelowpoverty, percollege)
+```
+For part a, “Filter” was used to look for high poverty and low college education for the county in orange square.  Menominee, Wisconsin is the clear outlier in the top left part of the plot graph
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(percollege >= 40, percbelowpoverty <= 20) %>%
+  select(county, state, percbelowpoverty, percollege)
+```
+The data is filtered to identify counties in the red square.
+(c)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  filter(
+    (percbelowpoverty > 45 & percollege < 10) |
+    (percollege >= 40 & percbelowpoverty <= 20)
+  ) %>%
+  select(county, state, percbelowpoverty, percollege)
+```
+For part c, Both outlier conditions combined into one filter, so all highlighted counties could return together.
+
+
+(d)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  mutate(
+    potential_outlier = if_else(
+      (percbelowpoverty > 45 & percollege < 10) |
+        (percollege >= 40 & percbelowpoverty <= 20),
+      "Yes",
+      "No"
+    )
+  ) %>%
+  select(county, state, percbelowpoverty, percollege, potential_outlier) %>%
+  arrange(potential_outlier)
+```
+For part d, “potential_outlier” a new variable was created and it labelled highlighted counties as “yes”.
+
+(e)
+```{r}
+# Done with the assistance of ChatGPT
+midwest %>%
+  mutate(
+    potential_outlier = if_else(
+      (percbelowpoverty > 45 & percollege < 10) |
+        (percollege >= 40 & percbelowpoverty <= 20),
+      "Yes",
+      "No"
+    )
+  ) %>%
+  ggplot(aes(x = percollege, y = percbelowpoverty, color = potential_outlier)) +
+  geom_point() +
+  labs(
+    title = "Percentage with a college degree versus poverty rate",
+    subtitle = "Potential outliers in the Midwest",
+    x = "% college educated",
+    y = "% below poverty",
+    color = "Potential outlier"
+  )
+```
+
+
+
 
 \newpage
 
 ### Question 7
 
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+state_population <- midwest %>%
+  group_by(state) %>%
+  summarize(total_population = sum(poptotal)) %>%
+  arrange(desc(total_population))
+
+state_population
+```
+For part a, The data by state is grouped and it calculated the total population for all. And then the results were sorted from largest to smallest.
+
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+state_population %>%
+  mutate(prop_population = total_population / sum(total_population)) %>%
+  arrange(desc(prop_population))
+```
+The state totals were used to calculate each state’s part out of the total Midwest population. The comparative study is easier now as proportions and not raw totals.Illinois is the most populous state and it is 27.2% of the total population in the dataset.
+
+
 \newpage
 
 ### Question 8
+
+(a)
+
+```{r}
+# Done with the assistance of ChatGPT
+state_poverty <- midwest %>%
+  group_by(state) %>%
+  summarize(mean_percbelowpoverty = mean(percbelowpoverty))
+
+state_poverty
+```
+
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+state_poverty %>%
+  arrange(mean_percbelowpoverty)
+```
+The counties are grouped by state and the average percentage below poverty is calculated for every state. When sorted from lowest to highest Indiana had the lowest and Michigan had the highest.
+
 
 \newpage
 
@@ -53,4 +226,70 @@ library(tidyverse)
 
 
 ### Question 9
+
+```{r}
+# Done with the assistance of ChatGPT
+df <- tibble(
+  var_1 = c(10, 20, 30, 40, 50),
+  var_2 = c("Pizza", "Burger", "Pizza", "Pizza", "Burger"),
+  var_3 = c("Apple", "Apple", "Pear", "Pear", "Banana")
+)
+
+df
+```
+
+(a)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  arrange(var_2)
+```
+For part a, the row is sorted by “var_2” in an alphabetical order. In order to put the burger rows ahead of the pizza one. The change in order of the order of the rows is by “arrange()”.
+(b)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2)
+```
+For this, the code groups the data by using “var_2”. This is done to get the rows with same value together in the same group.
+(c)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2) |>
+  summarize(mean_var_1 = mean(var_1))
+```
+For part c, the data is grouped according to “var_2”. The average value of of  “var_1”is calculated for each group.
+(d)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  summarize(mean_var_1 = mean(var_1))
+```
+The data is grouped by “var_2” and “var_3”. Then we get the average of “var_1” for every group.
+(e)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  summarize(mean_var_1 = mean(var_1), .groups = "drop")
+```
+Same as part D, but the difference is “.groups=”drop” ” is responsible for removal of the grouping from the final result. The output is not grouped anymore but values are the same.
+(f)
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  summarize(mean_var_1 = mean(var_1), .groups = "drop")
+```
+It makes a comparatively smaller summary table with one row for every group. The second step adds a new column of group average and keeping the original rows same.   
+  
+    
+```{r}
+# Done with the assistance of ChatGPT
+df |>
+  group_by(var_2, var_3) |>
+  mutate(mean_var_1 = mean(var_1))
+```
 
