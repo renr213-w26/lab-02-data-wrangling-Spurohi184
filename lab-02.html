@@ -139,6 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5 WI       72</code></pre>
 </div>
 </div>
+<p>Here,the number of counties in each state the dataset has were counted and the results are sorted from highest to lowest. Illinois has the most counties 102 and Wisconsin has the least with 72.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="question-2" class="level3">
@@ -157,6 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3 MONROE       5</code></pre>
 </div>
 </div>
+<p>For question 2, How frequently each county name appears was counted and they were filtered for names that showed up in all 5 states. The names are Crawford, Jackson, and Monroe and every county appeared 5 times.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="question-3" class="level3">
@@ -185,6 +187,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 9 MACOMB    MI        25621.   717400 0.028</code></pre>
 </div>
 </div>
+<ol type="A">
+<li>For question 3 part a, The data for counties with population density above 25,000 was filtered. Then I selected the required columns to sort them from highest to lowest density to get the most densely populated counties in the dataset.</li>
+</ol>
 <ol start="2" type="a">
 <li></li>
 </ol>
@@ -201,6 +206,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1 COOK   IL        88018.  5105067 0.058</code></pre>
 </div>
 </div>
+<ol start="2" type="A">
+<li>For part b, The maximum population density was used to identify the single county with the highest value. Cook County in Illinois has the highest population density.</li>
+</ol>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="question-4" class="level3">
@@ -220,6 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1           1156.  622.  2330</code></pre>
 </div>
 </div>
+<p>For question 4, As the distribution is extremely right-skewed, Medians and quartiles were used instead of Mean and Standard deviation. A normal county has a population density of 1156 and the middle 50% of the counties fall between 622 and 2330.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="question-5" class="level3">
@@ -248,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10 WI    Yes      20 0.278</code></pre>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
+<p>For question 5, A new “metro” variable was created to calculate the proportion of metro and non-metro counties in every state. The highest proportion of metro cities in Ohio and Illinois and Wisconsin has the lowest. </p>
 </section>
 <section id="question-6" class="level3">
 <h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
@@ -267,19 +276,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1 MENOMINEE WI                48.7       7.34</code></pre>
 </div>
 </div>
-<ol start="2" type="a">
-<li></li>
-</ol>
+<p>For part a, “Filter” was used to look for high poverty and low college education for the county in orange square. Menominee, Wisconsin is the clear outlier in the top left part of the plot graph</p>
+<p>b)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>midwest <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(percbelowpoverty <span class="sc">&gt;</span> <span class="dv">45</span>, percollege <span class="sc">&lt;</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(percollege <span class="sc">&gt;=</span> <span class="dv">40</span>, percbelowpoverty <span class="sc">&lt;=</span> <span class="dv">20</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, state, percbelowpoverty, percollege)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
+<pre><code># A tibble: 5 × 4
   county    state percbelowpoverty percollege
   &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-1 MENOMINEE WI                48.7       7.34</code></pre>
+1 CHAMPAIGN IL               15.6        41.3
+2 DU PAGE   IL                2.71       42.8
+3 HAMILTON  IN                3.59       42.1
+4 WASHTENAW MI               12.2        48.1
+5 DANE      WI               10.5        43.6</code></pre>
 </div>
 </div>
 <ol start="3" type="a">
@@ -305,6 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6 MENOMINEE WI               48.7        7.34</code></pre>
 </div>
 </div>
+<p>For part c, Both outlier conditions combined into one filter, so all highlighted counties could return together.</p>
 <ol start="4" type="a">
 <li></li>
 </ol>
@@ -338,6 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 427 more rows</code></pre>
 </div>
 </div>
+<p>For part d, “potential_outlier” a new variable was created and it labelled highlighted counties as “yes”.</p>
 <ol start="5" type="a">
 <li></li>
 </ol>
@@ -395,6 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5 WI             4891769</code></pre>
 </div>
 </div>
+<p>For part a, The data by state is grouped and it calculated the total population for all. And then the results were sorted from largest to smallest.</p>
 <ol start="2" type="a">
 <li></li>
 </ol>
@@ -414,6 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5 WI             4891769           0.116</code></pre>
 </div>
 </div>
+<p>The state totals were used to calculate each state’s part out of the total Midwest population. The comparative study is easier now as proportions and not raw totals.Illinois is the most populous state and it is 27.2% of the total population in the dataset.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="question-8" class="level3">
@@ -457,6 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5 MI                     14.2</code></pre>
 </div>
 </div>
+<p>The counties are grouped by state and the average percentage below poverty is calculated for every state. When sorted from lowest to highest Indiana had the lowest and Michigan had the highest.</p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
@@ -465,13 +482,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-9" class="level3">
 <h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>),</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_2 =</span> <span class="fu">c</span>(<span class="st">"Pizza"</span>, <span class="st">"Burger"</span>, <span class="st">"Pizza"</span>, <span class="st">"Pizza"</span>, <span class="st">"Burger"</span>),</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_3 =</span> <span class="fu">c</span>(<span class="st">"Apple"</span>, <span class="st">"Apple"</span>, <span class="st">"Pear"</span>, <span class="st">"Pear"</span>, <span class="st">"Banana"</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_2 =</span> <span class="fu">c</span>(<span class="st">"Pizza"</span>, <span class="st">"Burger"</span>, <span class="st">"Pizza"</span>, <span class="st">"Pizza"</span>, <span class="st">"Burger"</span>),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_3 =</span> <span class="fu">c</span>(<span class="st">"Apple"</span>, <span class="st">"Apple"</span>, <span class="st">"Pear"</span>, <span class="st">"Pear"</span>, <span class="st">"Banana"</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   var_1 var_2  var_3 
@@ -487,8 +505,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li></li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(var_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(var_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   var_1 var_2  var_3 
@@ -500,12 +519,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5    40 Pizza  Pear  </code></pre>
 </div>
 </div>
-<ol start="2" type="a">
-<li></li>
-</ol>
+<p>For part a, the row is sorted by “var_2” in an alphabetical order. In order to put the burger rows ahead of the pizza one. The change in order of the order of the rows is by “arrange()”. (b)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
 # Groups:   var_2 [2]
@@ -518,13 +536,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5    50 Burger Banana</code></pre>
 </div>
 </div>
-<ol start="3" type="a">
-<li></li>
-</ol>
+<p>For this, the code groups the data by using “var_2”. This is done to get the rows with same value together in the same group. (c)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2) <span class="sc">|&gt;</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2) <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   var_2  mean_var_1
@@ -533,13 +550,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2 Pizza        26.7</code></pre>
 </div>
 </div>
-<ol start="4" type="a">
-<li></li>
-</ol>
+<p>For part c, the data is grouped according to “var_2”. The average value of of “var_1”is calculated for each group. (d)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has regrouped the output.
 ℹ Summaries were computed grouped by var_2 and var_3.
@@ -559,13 +575,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Pizza  Pear           35</code></pre>
 </div>
 </div>
-<ol start="5" type="a">
-<li></li>
-</ol>
+<p>The data is grouped by “var_2” and “var_3”. Then we get the average of “var_1” for every group. (e)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   var_2  var_3  mean_var_1
@@ -576,13 +591,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Pizza  Pear           35</code></pre>
 </div>
 </div>
-<ol start="6" type="a">
-<li></li>
-</ol>
+<p>Same as part D, but the difference is “.groups=”drop” ” is responsible for removal of the grouping from the final result. The output is not grouped anymore but values are the same. (f)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   var_2  var_3  mean_var_1
@@ -593,10 +607,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Pizza  Pear           35</code></pre>
 </div>
 </div>
+<p>It makes a comparatively smaller summary table with one row for every group. The second step adds a new column of group average and keeping the original rows same.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Done with the assistance of ChatGPT</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(var_2, var_3) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_var_1 =</span> <span class="fu">mean</span>(var_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
 # Groups:   var_2, var_3 [4]
